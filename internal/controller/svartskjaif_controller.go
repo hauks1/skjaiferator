@@ -52,10 +52,6 @@ func (r *SvartSkjaifReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 	if err := r.Get(ctx, req.NamespacedName, svartSkjaif); err != nil {
 		return ctrl.Result{}, client.IgnoreNotFound(err)
 	}
-	logger.Info("Incomming svartSkjaif",
-		"kaffe", svartSkjaif.Spec.SvartSkjaifContainer.Kaffe,
-		"kopp", svartSkjaif.Spec.SvartSkjaifContainer.Kopp,
-		"vann", svartSkjaif.Spec.SvartSkjaifContainer.Vann)
 	// Set svartSkjaif values in the container if they are not kopp: mummi, vann: varmt og kaffe:svart
 	container := &svartSkjaif.Spec.SvartSkjaifContainer
 	if container.Kaffe != "svart" {
