@@ -4,6 +4,6 @@ metadata:
   name: svartskjaif-sample
 spec:
   skjaifcontainer:
-    kaffe: svart
-    kopp: mummi
-    vann: varmt
+    kaffe: latte
+    kopp: ikea
+    vann: kald
