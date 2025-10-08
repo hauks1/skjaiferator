@@ -1,0 +1,11 @@
+apiVersion: skjaif.skjaiferator.no/v1beta1
+kind: SvartSkjaif
+metadata:
+  labels:
+    app.kubernetes.io/name: skjaiferator
+    app.kubernetes.io/managed-by: kustomize
+  name: svartskjaif-sample
+spec:
+  kaffe: svart
+  kopp: mummi
+  vann: varmt

@@ -27,7 +27,7 @@ import (
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	skjaifv1alpha1 "github.com/hauks1/skjaiferator/api/v1alpha1"
+	skjaifv1beta1 "github.com/hauks1/skjaiferator/api/v1beta1"
 )
 
 var _ = Describe("SvartSkjaif Controller", func() {
@@ -40,13 +40,13 @@ var _ = Describe("SvartSkjaif Controller", func() {
 			Name:      resourceName,
 			Namespace: "default", // TODO(user):Modify as needed
 		}
-		svartskjaif := &skjaifv1alpha1.SvartSkjaif{}
+		svartskjaif := &skjaifv1beta1.SvartSkjaif{}
 
 		BeforeEach(func() {
 			By("creating the custom resource for the Kind SvartSkjaif")
 			err := k8sClient.Get(ctx, typeNamespacedName, svartskjaif)
 			if err != nil && errors.IsNotFound(err) {
-				resource := &skjaifv1alpha1.SvartSkjaif{
+				resource := &skjaifv1beta1.SvartSkjaif{
 					ObjectMeta: metav1.ObjectMeta{
 						Name:      resourceName,
 						Namespace: "default",
@@ -59,7 +59,7 @@ var _ = Describe("SvartSkjaif Controller", func() {
 
 		AfterEach(func() {
 			// TODO(user): Cleanup logic after each test, like removing the resource instance.
-			resource := &skjaifv1alpha1.SvartSkjaif{}
+			resource := &skjaifv1beta1.SvartSkjaif{}
 			err := k8sClient.Get(ctx, typeNamespacedName, resource)
 			Expect(err).NotTo(HaveOccurred())
 
