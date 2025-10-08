@@ -1,0 +1,9 @@
+apiVersion: skjaif.skjaiferator.no/v1alpha1
+kind: SvartSkjaif
+metadata:
+  labels:
+    app.kubernetes.io/name: skjaiferator
+    app.kubernetes.io/managed-by: kustomize
+  name: svartskjaif-sample
+spec:
+  # TODO(user): Add fields here
