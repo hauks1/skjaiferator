@@ -22,14 +22,13 @@ import (
 
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
-
 // SvartSkjaifSpec defines the desired state of SvartSkjaif.
 type SvartSkjaifSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
-
-	// Foo is an example field of SvartSkjaif. Edit svartskjaif_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	Kopp  string `json:"kopp,omitempty"`
+	Vann  string `json:"vann,omitempty"`
+	Kaffe string `json:"kaffe,omitempty"`
 }
 
 // SvartSkjaifStatus defines the observed state of SvartSkjaif.
@@ -40,7 +39,7 @@ type SvartSkjaifStatus struct {
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
-
+// +kubebuilder:storageversion
 // SvartSkjaif is the Schema for the svartskjaifs API.
 type SvartSkjaif struct {
 	metav1.TypeMeta   `json:",inline"`
