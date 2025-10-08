@@ -47,10 +47,33 @@ type SvartSkjaifReconciler struct {
 // For more details, check Reconcile and its Result here:
 // - https://pkg.go.dev/sigs.k8s.io/controller-runtime@v0.21.0/pkg/reconcile
 func (r *SvartSkjaifReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
-	_ = logf.FromContext(ctx)
-
-	// TODO(user): your logic here
-
+	logger := logf.FromContext(ctx)
+	svartSkjaif := &skjaifv1alpha1.SvartSkjaif{}
+	if err := r.Get(ctx, req.NamespacedName, svartSkjaif); err != nil {
+		return ctrl.Result{}, client.IgnoreNotFound(err)
+	}
+	logger.Info("Incomming svartSkjaif",
+		"kaffe", svartSkjaif.Spec.SvartSkjaifContainer.Kaffe,
+		"kopp", svartSkjaif.Spec.SvartSkjaifContainer.Kopp,
+		"vann", svartSkjaif.Spec.SvartSkjaifContainer.Vann)
+	// Set svartSkjaif values in the container if they are not kopp: mummi, vann: varmt og kaffe:svart
+	container := &svartSkjaif.Spec.SvartSkjaifContainer
+	if container.Kaffe != "svart" {
+		logger.Info("handled kaffe not svart, setting to svart", "kaffe", container.Kaffe)
+		container.Kaffe = "svart"
+	}
+	if container.Kopp != "mummi" {
+		logger.Info("handled kopp not mummi, setting to mummi", "kopp", container.Kopp)
+		container.Kopp = "mummi"
+	}
+	if container.Vann != "varmt" {
+		logger.Info("handled vann not varmt, setting to varmt", "vann", container.Vann)
+		container.Vann = "varmt"
+	}
+	logger.Info("Final container state",
+		"kaffe", container.Kaffe,
+		"kopp", container.Kopp,
+		"vann", container.Vann)
 	return ctrl.Result{}, nil
 }
 

@@ -29,7 +29,12 @@ type SvartSkjaifSpec struct {
 	// Important: Run "make" to regenerate code after modifying this file
 
 	// Foo is an example field of SvartSkjaif. Edit svartskjaif_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	SvartSkjaifContainer `json:"skjaifcontainer"`
+}
+type SvartSkjaifContainer struct {
+	Kopp  string `json:"kopp,omitempty"`
+	Vann  string `json:"vann,omitempty"`
+	Kaffe string `json:"kaffe,omitempty"`
 }
 
 // SvartSkjaifStatus defines the observed state of SvartSkjaif.
