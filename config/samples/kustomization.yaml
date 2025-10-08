@@ -1,0 +1,4 @@
+## Append samples of your project ##
+resources:
+- skjaif_v1alpha1_svartskjaif.yaml
+# +kubebuilder:scaffold:manifestskustomizesamples
