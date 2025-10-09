@@ -40,6 +40,7 @@ import (
 	skjaifv1alpha1 "github.com/hauks1/skjaiferator/api/v1alpha1"
 	skjaifv1beta1 "github.com/hauks1/skjaiferator/api/v1beta1"
 	"github.com/hauks1/skjaiferator/internal/controller"
+	webhookv1beta1 "github.com/hauks1/skjaiferator/internal/webhook/v1beta1"
 	// +kubebuilder:scaffold:imports
 )
 
@@ -210,6 +211,13 @@ func main() {
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "SvartSkjaif")
 		os.Exit(1)
+	}
+	// nolint:goconst
+	if os.Getenv("ENABLE_WEBHOOKS") != "false" {
+		if err := webhookv1beta1.SetupSvartSkjaifWebhookWithManager(mgr); err != nil {
+			setupLog.Error(err, "unable to create webhook", "webhook", "SvartSkjaif")
+			os.Exit(1)
+		}
 	}
 	// +kubebuilder:scaffold:builder
 
