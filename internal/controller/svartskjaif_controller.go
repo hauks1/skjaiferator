@@ -53,25 +53,25 @@ func (r *SvartSkjaifReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 	if err := r.Get(ctx, req.NamespacedName, svartSkjaif); err != nil {
 		return ctrl.Result{}, client.IgnoreNotFound(err)
 	}
-	logger.Info("svartSkjaif", "svartSkjaif", &svartSkjaif)
+	logger.Info("OBJECT", "data", &svartSkjaif)
 	// Set svartSkjaifAlpha1 values in the container if they are not kopp: mummi, vann: varmt og kaffe:svart
+
 	spec := &svartSkjaif.Spec
-	if spec.Kaffe != "svart" {
-		logger.Info("handled kaffe not svart, setting to svart", "kaffe", spec.Kaffe)
-		spec.Kaffe = "svart"
+	if spec.Kaffe != "" {
+		logger.Info("SPEC DATA", "kaffe", spec.Kaffe)
+	} else {
+		logger.Info("SPEC DATA", "kaffe", "not defined in spec")
 	}
-	if spec.Kopp != "mummi" {
-		logger.Info("handled kopp not mummi, setting to mummi", "kopp", spec.Kopp)
-		spec.Kopp = "mummi"
+	if spec.Kopp != "" {
+		logger.Info("SPEC DATA", "kopp", spec.Kopp)
+	} else {
+		logger.Info("SPEC DATA", "kopp", "not defined in spec")
 	}
-	if spec.Vann != "varmt" {
-		logger.Info("handled vann not varmt, setting to varmt", "vann", spec.Vann)
-		spec.Vann = "varmt"
+	if spec.Vann == "" {
+		logger.Info("SPEC DATA", "vann", spec.Vann)
+	} else {
+		logger.Info("SPEC DATA", "vann", "not defined in spec")
 	}
-	logger.Info("Final spec state",
-		"kaffe", spec.Kaffe,
-		"kopp", spec.Kopp,
-		"vann", spec.Vann)
 	return ctrl.Result{}, nil
 }
 

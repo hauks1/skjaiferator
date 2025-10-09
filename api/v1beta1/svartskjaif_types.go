@@ -38,6 +38,8 @@ type SvartSkjaifStatus struct {
 }
 
 // +kubebuilder:object:root=true
+// +kubebuilder:storageversion
+// +kubebuilder:conversion:hub
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 // SvartSkjaif is the Schema for the svartskjaifs API.

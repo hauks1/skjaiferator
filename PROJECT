@@ -28,4 +28,7 @@ resources:
   kind: SvartSkjaif
   path: github.com/hauks1/skjaiferator/api/v1beta1
   version: v1beta1
+  webhooks:
+    conversion: true
+    webhookVersion: v1
 version: "3"
